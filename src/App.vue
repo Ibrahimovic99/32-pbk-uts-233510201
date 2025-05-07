@@ -14,11 +14,16 @@ function tambahTugas() {
     tugas.value.push({
       id: tugas.value.length + 1,
       text: input.value,
-      status: 'Belum Selesai'
+      status: false
     })
     input.value = ''
   }
 }
+
+const hapusTugas = (id) => {
+  tugas.value = tugas.value.filter((tugas) => tugas.id !== id)
+}
+
 </script>
 
 <template>
@@ -30,6 +35,7 @@ function tambahTugas() {
       <li v-for="tugas in tugas" :key="tugas.id">
         <input type="checkbox" v-model="tugas.status">
         {{ tugas.text }} - {{ tugas.status }}
+        <button @click="hapusTugas(tugas.id)">Hapus</button>
       </li>
     </ul>
   </div>
