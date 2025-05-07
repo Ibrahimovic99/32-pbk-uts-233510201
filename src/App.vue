@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 
 const tugas = ref([
-  { id: 1, text: 'makan', status: 'Belum Selesai' },
-  { id: 2, text: 'minum', status: 'Selesai' },
-  { id: 3, text: 'joging', status: 'Belum Selesai' },
+  { id: 1, text: 'makan', status: false },
+  { id: 2, text: 'minum', status: true },
+  { id: 3, text: 'joging', status: false },
 ])
 
 const input = ref('')
@@ -28,6 +28,7 @@ function tambahTugas() {
     <button @click="tambahTugas">Tambah</button>
     <ul>
       <li v-for="tugas in tugas" :key="tugas.id">
+        <input type="checkbox" v-model="tugas.status">
         {{ tugas.text }} - {{ tugas.status }}
       </li>
     </ul>
