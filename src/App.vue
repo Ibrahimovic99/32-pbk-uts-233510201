@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const tugas = ref([
   { id: 1, text: 'makan', status: false },
@@ -8,6 +8,10 @@ const tugas = ref([
 ])
 
 const input = ref('')
+
+const jumlahTugas = computed(() => {
+  return tugas.value.filter((tugas) => tugas.status === false).length
+})
 
 function tambahTugas() {
   if (input.value !== '') {
@@ -24,6 +28,8 @@ const hapusTugas = (id) => {
   tugas.value = tugas.value.filter((tugas) => tugas.id !== id)
 }
 
+
+
 </script>
 
 <template>
@@ -38,6 +44,7 @@ const hapusTugas = (id) => {
         <button @click="hapusTugas(tugas.id)">Hapus</button>
       </li>
     </ul>
+    <p>Jumlah tugas aktif: {{ jumlahTugas }}</p>
   </div>
 </template>
 
